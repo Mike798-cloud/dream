@@ -51,7 +51,17 @@
  ['住店先看床',s=>s.solved[1]],['这单我不签',s=>s.read.p04&&s.solved[2]],['真不是螺丝',s=>s.solved[2]],['先把原话留下',s=>s.solved[3]&&s.solved[4]],['这账还得算',s=>s.optional.deposit],['搬的究竟是什么',s=>s.read.p20&&s.solved[2]&&s.read.p22],['她来过学校',s=>s.solved[6]],['三个晚上',s=>s.solved[7]],['醒着的是谁',s=>s.solved[8]],['我认得自己的手',s=>s.solved[12]],['别把人留错地方',s=>s.solved[9]],['线头还没剪',s=>s.optional.orders&&s.read.p26],['清晨',s=>s.endings.morning],['同住',s=>s.endings.stay]
  ];
  function normalize(x){let s=String(x||'').toLowerCase().replace(/[\s()（）-]/g,'');const aliases={'袁老师':'袁志强','三一二':'312','三一二房':'312房','三一二号':'312','床箱':'床台','旧床':'床台','回水宾馆三一二':'312房','袁太太':'周敏','玉枝阿姨':'陈玉枝','妈妈':'梁秀琴','秀琴':'梁秀琴','张小姐':'张岚','库房':'保管','医疗':'护理'};for(const [a,b]of Object.entries(aliases))s=s.replaceAll(a,b);return s;}
- function search(pages,query,read,access){let q=normalize(query);if(!q)return[];return pages.filter(p=>(!p.event||read[p.id])&&(!p.gate||access===undefined||access[p.gate])&&normalize(p.title+' '+p.body.join(' ')+' '+p.id).includes(q));}
- const API={VERSION,blank,reduce,checkNode,canReturn,canRemove,canEnd,achievements,normalize,search,safeKey,ordered,activeEvents,compactEvents,validEvent,parseBackup};
+ function available(p,s){
+  if(p.gate&&!s.access[p.gate]||p.revealAfter&&!s.solved[p.revealAfter]||p.event&&!s.read[p.id])return false;
+  const n=+p.id.slice(1);
+  if(n>=45&&n<=47)return s.activeEnding==='morning'&&canEnd(s,'morning');
+  if(n===48)return s.activeEnding==='stay'&&canEnd(s,'stay');
+  if(n===43||n===44)return !!(s.returns?.yuan&&s.returns?.chen);
+  if(n===37||n===38||n===42)return !!s.solved[8];
+  if(n===35||n===36)return !!(s.solved[7]&&[1,2,3,4,5].every(q=>s.solved[q]));
+  return true;
+ }
+ function search(pages,query,read,access,state){let q=normalize(query);if(!q)return[];const s=state||{...blank(),read:read||{},access:access||{}};return pages.filter(p=>available(p,s)&&normalize(p.title+' '+p.body.join(' ')+' '+(p.laterAfter&&s.solved[p.laterAfter]?(p.laterBody||[]).join(' '):'')+' '+p.id).includes(q));}
+ const API={VERSION,blank,reduce,checkNode,canReturn,canRemove,canEnd,achievements,normalize,available,search,safeKey,ordered,activeEvents,compactEvents,validEvent,parseBackup};
  if(typeof module!=='undefined'&&module.exports)module.exports=API;else root.MYCore=API;
 })(typeof window==='undefined'?globalThis:window);
