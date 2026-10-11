@@ -57,11 +57,34 @@
   if(n>=45&&n<=47)return s.activeEnding==='morning'&&canEnd(s,'morning');
   if(n===48)return s.activeEnding==='stay'&&canEnd(s,'stay');
   if(n===43||n===44)return !!(s.returns?.yuan&&s.returns?.chen);
-  if(n===37||n===38||n===42)return !!s.solved[8];
+  if(n===42)return !!s.solved[10];if(n===37||n===38)return !!s.solved[8];
   if(n===35||n===36)return !!(s.solved[7]&&[1,2,3,4,5].every(q=>s.solved[q]));
   return true;
  }
  function search(pages,query,read,access,state){let q=normalize(query);if(!q)return[];const s=state||{...blank(),read:read||{},access:access||{}};return pages.filter(p=>available(p,s)&&normalize(p.title+' '+p.body.join(' ')+' '+(p.laterAfter&&s.solved[p.laterAfter]?(p.laterBody||[]).join(' '):'')+' '+p.id).includes(q));}
- const API={VERSION,blank,reduce,checkNode,canReturn,canRemove,canEnd,achievements,normalize,available,search,safeKey,ordered,activeEvents,compactEvents,validEvent,parseBackup};
+
+function assessOperation(id,v,s){
+ const token=x=>String(x||'').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]/gu,''),has=(key,list)=>list.includes(v[key]),bad=reason=>({ok:false,reason}),deps={1:[],2:[],3:[],4:[],5:[],6:[5],7:[6],8:[1,2,3,4,5,7],9:[8],10:[9],11:[10],12:[11]};
+ if(!deps[id]||deps[id].some(q=>!s.solved[q]))return bad('unavailable');
+ let ok=false;
+ switch(id){
+ case 1:if(token(v.item)!=='c0306')return bad('item');ok=has('photo',['cabinet','patch','room306','r:p02','r:p03'])&&has('record',['r:p06','r:p07','r:p21','r:p23']);break;
+ case 2:if(token(v.item)!=='b0312')return bad('item');if(v.disposition!=='hold')return bad('receipt');ok=has('photo',['cavity','closeup','r:p05'])&&has('record',['transfer','r:p06','r:p22']);break;
+ case 3:ok=has('record',['r:p19','r:p27','street']);break;
+ case 4:{const topic=String(v.topic||'').trim();if(!(topic==='p10'||/^(?:https?:\/\/[^/]+)?(?:\.\.\/|\.\/)?(?:[^?#]*\/)?forum\/p10\.html(?:[?#].*)?$/.test(topic)||topic==='p10.html'))return bad('topic');ok=has('record',['chenBefore','chenAfter','r:p12','r:p13','r:p34']);break;}
+
+ case 5:if(v.action!=='keep')return bad('receipt');ok=has('record',['missing','r:p17','r:p18','r:p19']);break;
+ case 6:ok=has('letter',['letter','r:p28'])&&has('photo',['zhanglan','r:p30']);break;
+ case 7:ok=has('private',['r:p24'])&&has('record',['nursing','r:p33']);break;
+ case 8:ok=['yuzhi','shen','zhang'].includes(v.contact)&&['speak','withdraw'].includes(v.action);break;
+ case 9:{const rows=[{who:['袁志强','周敏'],docs:['b0312','r:p22','r:p19'],photos:['yuanBefore','yuanAfter','r:p11']},{who:['陈慧','陈恪'],docs:['b0211','r:p23','r:p19'],photos:['chenBefore','chenAfter','r:p13']},{who:['许知遥','知遥'],docs:['r:p23','r:p19','letter','r:p28'],photos:['zhiyao','satup','r:p36']}];ok=rows.every((r,i)=>r.who.some(n=>token(n)===token(v[i+'_living']))&&r.docs.includes(v[i+'_identity'])&&r.photos.includes(v[i+'_photo']));break;}
+ case 10:if(v.action!=='hold')return bad('receipt');ok=has('record',['r:p24','r:p29','r:p33','r:p40','r:p41','nursing','zhangLetter']);break;
+ case 11:ok=has('yuan_doc',['b0312','r:p22'])&&v.yuan_photo==='yuanCurrent'&&has('chen_doc',['b0211','r:p23'])&&v.chen_photo==='chenCurrent';break;
+ case 12:ok=s.returns.yuan&&s.returns.chen&&has('outside',['satup','zhiyao','r:p36']);break;
+ }
+ return ok?{ok:true}:bad('materials');
+}
+
+ const API={assessOperation,VERSION,blank,reduce,checkNode,canReturn,canRemove,canEnd,achievements,normalize,available,search,safeKey,ordered,activeEvents,compactEvents,validEvent,parseBackup};
  if(typeof module!=='undefined'&&module.exports)module.exports=API;else root.MYCore=API;
 })(typeof window==='undefined'?globalThis:window);
