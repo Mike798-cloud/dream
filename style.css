@@ -1747,14 +1747,112 @@ body.phone .contact-transcript li.own-message{background:transparent;border:0;}
 body.phone .contact-transcript{scrollbar-width:thin;scrollbar-color:#9aa5b1 transparent;}
 body.phone .contact-transcript::-webkit-scrollbar{width:4px;}
 body.phone .contact-transcript::-webkit-scrollbar-thumb{background:#9aa5b1;border-radius:2px;}
-/* Creator correspondence and voluntary support are outside the fictional sites. */
-#support-dialog{box-sizing:border-box;width:min(740px,calc(100vw - 28px));max-height:calc(100dvh - 28px);overflow:auto;overscroll-behavior:contain;padding:30px;background:#eee8dc;color:#3f3932;border:1px solid #908478;font:15px/1.85 "Microsoft YaHei",sans-serif}
-#support-dialog::backdrop{background:rgba(15,19,18,.76)}
-#support-dialog header{border-bottom:1px solid #b4aa9b;padding:0 32px 14px 0}#support-dialog h2{font:400 25px/1.5 "Songti SC",SimSun,serif;margin:5px 0 8px;color:#473e35}#support-dialog p{margin:8px 0}#support-dialog header p{font-size:13px;color:#655d52}
-#support-dialog .support-close{position:absolute;right:12px;top:12px;background:transparent;border:0;color:#544d43;min-width:44px;min-height:44px;font-size:26px;padding:0}
-#support-dialog .support-body{display:grid;grid-template-columns:174px minmax(0,1fr);gap:24px;margin:20px 0}#support-dialog figure{margin:0}#support-dialog img{display:block;width:100%;height:auto;background:white}#support-dialog figcaption{font-size:12px;line-height:1.7;text-align:center;margin-top:8px}#support-dialog a{color:#544b3e;text-decoration:underline}
-#support-dialog footer{display:flex;gap:12px;border-top:1px solid #b4aa9b;padding:16px 0 0}#support-dialog footer button{flex:1;background:#ece5d8;color:#443c32;border:1px solid #8e8170;min-height:44px;font-size:14px}#support-dialog [data-support-done]{background:#5c4e41;color:#fff6e5}#support-dialog .support-small{font-size:12px;color:#675d50;line-height:1.7}#support-dialog .support-image-error{font-size:13px}
-#support-status{position:fixed;z-index:10030;bottom:22px;left:50%;transform:translateX(-50%);max-width:calc(100% - 28px);width:max-content;background:#eee8dc;color:#38342d;border:1px solid #8e8170;padding:12px 18px;font:14px/1.7 sans-serif}#support-status[hidden]{display:none}
-.work-options .support-entry{border:0;background:transparent;color:#5d665b;text-decoration:underline;font-size:12px;min-height:44px;padding:6px 12px}
-.support-author .author-closing{padding:35px 0 24px;border-bottom:1px solid #ada697}.support-author .author-closing h1{font:400 clamp(25px,4vw,38px)/1.6 "Songti SC",SimSun,serif}.support-author .author-closing>p{font-size:13px;color:#656352}.support-author .closing-photo{margin:32px 0}.support-author .closing-photo img{display:block;width:100%;height:auto;max-height:380px;object-fit:cover;object-position:center 60%}.support-author .closing-photo figcaption{font-size:12px;color:#656352;padding-top:8px}.support-author .creator-letter{max-width:660px;font-size:16px;line-height:2.1}.creator-letter p{margin:0 0 20px}.creator-signature{text-align:right}.creator-contact{display:grid;grid-template-columns:minmax(0,1fr) 148px;gap:30px;border-top:1px solid #ada697;border-bottom:1px solid #ada697;padding:24px 0;margin:30px 0}.creator-contact h2{font-size:19px}.creator-contact p{font-size:14px;line-height:1.8}.creator-contact figure{margin:0}.creator-contact img{width:100%;height:auto;display:block}.creator-contact figcaption{font-size:12px;margin-top:8px}.closing-actions{display:flex;flex-wrap:wrap;gap:16px;margin:30px 0}.closing-actions a,.closing-actions button{min-height:44px;display:flex;align-items:center}.creation-note{font-size:13px;line-height:1.9;margin-top:28px}
-@media(max-width:600px){#support-dialog{padding:22px 18px;font-size:14px}#support-dialog h2{font-size:22px}#support-dialog .support-body{grid-template-columns:1fr;gap:12px}#support-dialog figure{width:150px;margin:0 auto}#support-dialog footer{flex-direction:column}.creator-contact{grid-template-columns:1fr;gap:18px}.creator-contact figure{width:148px}.support-author .creator-letter{font-size:16px}.support-author .closing-photo img{max-height:290px}}
+
+/* ============ r6：清晰的"我的便笺"悬浮旧纸吊牌 ============ */
+.personal-dock{
+  position:fixed;right:16px;bottom:16px;z-index:60;
+  padding:0;margin:0;font-size:13px;text-align:left;line-height:1;}
+.personal-dock a{
+  position:relative;display:inline-block;min-height:44px;line-height:1.5;
+  padding:9px 18px 9px 25px;
+  color:#2c2618;text-decoration:none;
+  font-family:Georgia,'Songti SC','STSong','SimSun',serif;
+  letter-spacing:.12em;
+  background:#e8dfc7;
+  border:1px solid #86785a;
+  border-radius:1px;
+  box-shadow:2px 3px 10px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.4);
+  text-shadow:0 1px 0 rgba(255,255,255,.5);}
+.personal-dock a::before{
+  content:"";position:absolute;left:11px;top:50%;
+  width:6px;height:6px;margin-top:-3px;border-radius:50%;
+  background:#8a2c26;box-shadow:0 0 0 1px rgba(60,20,15,.35);}
+.personal-dock a:hover,.personal-dock a:focus-visible{
+  color:#1d170c;background:#d6c79f;border-color:#6a5b3c;
+  box-shadow:2px 3px 12px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.4);}
+.scene.dawn .personal-dock a{color:#2c2618;}
+@media(max-width:600px){
+  .personal-dock{right:12px;bottom:12px;}
+  .personal-dock a{padding:11px 18px 11px 27px;font-size:14px;}
+  .personal-dock a::before{left:12px;}}
+
+/* ============================================================
+   r7（2026-10-12）系统框架页 body.author：暗室卷宗
+   notes/settings/help/strategy/search/author 原为纯白现代页，
+   与民俗恐怖氛围脱节。统一为暗书房 + 米黄卷宗纸，保证可读可用。
+   ============================================================ */
+body.author{
+  color:#d9d0bb;background:#17140e;
+  background-image:
+   radial-gradient(120% 78% at 50% -10%, rgba(99,78,42,.34), transparent 62%),
+   radial-gradient(150% 120% at 50% 112%, rgba(0,0,0,.68), transparent 56%);
+  background-attachment:fixed;min-height:100vh;}
+body.author::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+   radial-gradient(132% 102% at 50% 44%, transparent 55%, rgba(0,0,0,.52) 100%),
+   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");}
+/* 顶部品牌栏 */
+body.author .utility-brand{
+  position:relative;z-index:1;display:flex;justify-content:space-between;align-items:baseline;
+  gap:16px;max-width:920px;margin:0 auto;padding:22px 46px 14px;
+  border-bottom:1px solid rgba(222,206,168,.22);}
+body.author .utility-brand a{color:#f0e6cb;font-size:20px;text-decoration:none;letter-spacing:.04em;}
+body.author .utility-brand a:hover{color:#f3b39c;}
+body.author .utility-brand span{color:#b7ab8d;font-size:14px;letter-spacing:.18em;}
+/* #main 之外链接（含底部工具）浅色 */
+body.author .work-options{position:relative;z-index:1;}
+body.author a{color:#e6dcc2;}
+body.author a:hover{color:#efb09a;}
+body.author hr{border:0;border-top:1px solid rgba(222,206,168,.22);}
+/* 卷宗纸 */
+body.author #main{
+  position:relative;z-index:1;max-width:920px;margin:30px auto 40px;padding:42px 48px;
+  background:#ece2ca;color:#332e24;border:1px solid #0b0905;
+  box-shadow:0 34px 80px rgba(0,0,0,.62), inset 0 0 0 1px rgba(255,255,255,.55);}
+body.author #main::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.6;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.05'/%3E%3C/svg%3E");}
+body.author #main>*{position:relative;z-index:1;}
+/* 卷宗内：深墨字、宋体标题 */
+body.author #main h1,body.author #main h2,body.author #main h3,
+body.author #main p,body.author #main li,body.author #main dt,body.author #main dd,
+body.author #main label,body.author #main summary,body.author #main span,
+body.author #main section,body.author #main article,body.author #main header,
+body.author #main div{color:#332e24;}
+body.author #main h1,body.author #main h2,body.author #main h3{
+  font-family:'Songti SC','STSong','SimSun',serif;color:#211b12;}
+body.author #main h1{font-size:28px;line-height:1.5;padding-bottom:14px;margin-bottom:20px;
+  border-bottom:2px solid #3a3324;}
+body.author #main h2{font-size:20px;margin:1.7em 0 .7em;padding-left:12px;border-left:4px solid #8a2c26;}
+body.author #main h3{font-size:17px;}
+body.author #main a{color:#7c2f26;text-underline-offset:3px;}
+body.author #main a:hover{color:#a3160f;}
+body.author #main time,body.author #main small,body.author #main .meta{color:#6c614d;}
+body.author #main ul.list,body.author #main ol{padding-left:1.3em;}
+body.author #main ul.list li,body.author #main .notebook-sources li{margin-bottom:12px;}
+/* 表单：凹陷纸 */
+body.author #main input,body.author #main textarea,body.author #main select{
+  background:#faf5e7;border:1px solid #a89a75;color:#2b261a;}
+body.author #main input:focus,body.author #main textarea:focus,body.author #main select:focus{
+  border-color:#8a2c26;background:#fdfaf1;}
+body.author #main textarea{background:#fbf7ec;line-height:1.8;}
+body.author #main input[type=checkbox],body.author #main input[type=radio]{
+  width:18px;height:18px;accent-color:#7c2f26;}
+/* 按钮：墨褐纸立体 */
+body.author #main button{
+  min-height:44px;padding:8px 18px;font-weight:600;color:#332c1c;
+  background:linear-gradient(180deg,#f0e8d2,#d8caa5);
+  border:1px solid #8c7c56;box-shadow:0 1px 2px rgba(0,0,0,.28);}
+body.author #main button:hover{background:linear-gradient(180deg,#f5edd7,#e2d4ac);color:#1e190e;}
+/* 底部工具：暗背景浅字 */
+body.author .work-options{max-width:920px;margin:0 auto;padding:18px 46px 50px;}
+body.author .private-tools a{color:#e6dcc2;margin-right:18px;}
+body.author .private-tools a:hover{color:#efb09a;}
+/* 移动端 */
+@media(max-width:600px){
+  body.author .utility-brand{padding:18px 20px 12px;}
+  body.author #main{padding:28px 21px;margin:20px 12px 30px;}
+  body.author #main h1{font-size:23px;}
+  body.author .work-options{padding:16px 21px 44px;}
+}
