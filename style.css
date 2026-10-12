@@ -906,3 +906,844 @@ body.scene .borrowed-after{padding:16px 20px;background:rgba(20,21,16,.82);borde
 body.scene .borrowed-after h2{margin:0 0 8px;font-size:17px;color:var(--bone2);}
 body.scene .borrowed-after p{font-size:15px;line-height:2.05;color:var(--bone);margin:0 0 8px;}
 body.scene .borrowed-after .repeat{color:#8b9078;font-style:italic;}
+
+/* ============================================================================
+   ▼▼▼ 第二轮增强层（年代质感 / 独立配色）retro-polish · 20261012v4 ▼▼▼
+   ============================================================================ */
+
+/* ============================================================================
+   第二轮增强层 · 古早组 A：HOTEL 回水宾馆（约2008 小镇招待所官网）
+   真·年代语法：居中固定宽表格布局 / 宋体 / 蓝色下划线超链 / 滚动公告 /
+   立体按钮 / 访客计数器 / 双线分隔 / 建议分辨率备案
+   ========================================================================== */
+body.hotel{
+  --paper:#f6efdd; --paper2:#ece1c6; --wood:#5d3f26; --wood2:#7d5634;
+  --sign:#8c2f23; --stamp:#a8431f; --line:#c3b28f; --oldlink:#0033cc;
+  font-family:"Songti SC","SimSun","NSimSun",serif;
+  background-color:#cbb990;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(120,90,40,.05) 0 2px,transparent 2px 4px),
+    radial-gradient(rgba(90,66,30,.10) 1px,transparent 1.4px),
+    linear-gradient(180deg,#d8c8a2,#c4b188);
+  background-size:100% 6px,5px 5px,100% 100%;
+  font-size:14px;
+}
+body.hotel #main{max-width:980px;margin:14px auto;background:var(--paper);
+  border:3px double var(--wood);
+  box-shadow:0 2px 0 #fff inset, 0 0 0 1px #8a744c, 0 10px 26px rgba(40,26,10,.35);}
+
+/* 顶部实用条 → 黄底滚动公告（marquee） */
+body.hotel .inn-utility{position:relative;height:26px;overflow:hidden;line-height:26px;
+  background:#f3e7a8;border-bottom:1px solid var(--wood);
+  background-image:linear-gradient(180deg,#f7efbd,#e9d98c);
+  font-size:13px;color:#5a3a12;}
+body.hotel .inn-utility span,body.hotel .inn-utility a{display:none;}
+body.hotel .inn-utility::after{content:"◆ 公告：三楼312房维修中，暂不接待　◆　夜里若听见木柜轻响，请不要应声　◆　本店欢迎老客回家，行李可先卸在门口　◆";
+  position:absolute;left:0;top:0;white-space:nowrap;padding-left:100%;
+  color:#6a2a16;font-weight:700;letter-spacing:.05em;
+  animation:hotel-marquee 26s linear infinite;}
+body.hotel.static .inn-utility::after{animation:none;padding-left:12px;}
+@keyframes hotel-marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+
+/* 招牌横幅 */
+body.hotel .hotel-mast{display:block;padding:16px 20px 14px;text-align:center;
+  border-bottom:4px double var(--wood);
+  background:
+    repeating-linear-gradient(90deg,rgba(120,80,30,.05) 0 3px,transparent 3px 7px),
+    linear-gradient(180deg,#f8f1df,#ecdfc2);}
+body.hotel .hotel-mast small{display:block;letter-spacing:.3em;color:var(--wood2);font-size:11px;}
+body.hotel .hotel-mast a{display:block;font-size:40px;font-weight:900;letter-spacing:.18em;line-height:1.15;
+  color:var(--sign);text-decoration:none;
+  text-shadow:1px 1px 0 #e8d9b6,2px 2px 0 rgba(93,63,38,.35);
+  font-family:"SimHei","Heiti SC","Microsoft YaHei",sans-serif;}
+body.hotel .hotel-mast p{margin:4px 0 0;color:var(--wood2);font-size:13px;letter-spacing:.42em;}
+body.hotel .hotel-frontdesk{display:none;}
+
+/* 导航：暗红立体表格按钮 */
+body.hotel .platform-menu{border:2px outset #a06a4a;background:var(--sign);padding:2px;gap:2px;}
+body.hotel .platform-menu a{padding:7px 6px;color:#f6ead2;font-size:14px;letter-spacing:.12em;
+  border:1px outset #c98a6a;border-right:1px solid #5f2722;text-decoration:none;
+  font-family:"SimHei","Heiti SC",sans-serif;background:linear-gradient(180deg,#9a4034,#7c2f24);}
+body.hotel .platform-menu a.current,body.hotel .platform-menu a:hover{
+  background:linear-gradient(180deg,#6a2820,#53201b);color:#ffe9a8;border-style:inset;}
+
+/* 正文超链：经典蓝下划线 */
+body.hotel main a:not(.platform-menu a):not(.inn-home-photo a):not(.document-jump a):not(.room-unavailable){
+  color:var(--oldlink);}
+body.hotel article a,body.hotel p a,body.hotel section a,body.hotel li a,
+body.hotel .work-attachment-nav a,body.hotel .statement-reference a,
+body.hotel .local-addendum a,body.hotel .shop-ledger-post a{color:var(--oldlink);text-decoration:underline;}
+body.hotel article a:visited,body.hotel p a:visited{color:#663399;}
+body.hotel article a:hover,body.hotel p a:hover{color:#c00;}
+
+/* 图片旧化灰边 */
+body.hotel main img{border:1px solid #8a744c;background:#e6dcc2;
+  box-shadow:1px 1px 0 #fff inset,1px 1px 3px rgba(70,50,20,.3);}
+
+/* p01 首页 */
+body.hotel .inn-home-photo>div{border:2px outset #b7a578;background:#f4ecd8;}
+body.hotel .inn-home-photo h1{font-family:"SimHei","Heiti SC",sans-serif;}
+body.hotel .inn-home-photo a,body.hotel .document-jump a{
+  background:linear-gradient(180deg,#f3e7cf,#dcc89c);border:2px outset #b7a578;
+  color:#5a3a12;text-decoration:none;font-family:"SimHei","Heiti SC",sans-serif;
+  padding:3px 12px;font-size:13px;}
+body.hotel .inn-home-photo a:active,body.hotel .document-jump a:active{border-style:inset;}
+body.hotel .inn-home-columns h2,body.hotel .inn-local-services h2,
+body.hotel .room-window h2{font-family:"SimHei","Heiti SC",sans-serif;letter-spacing:.1em;}
+body.hotel .inn-local-services dl{border:2px ridge #c9bb9e;background:#fbf5e4;}
+body.hotel .inn-local-services dt{font-family:"SimHei","Heiti SC",sans-serif;}
+
+/* 侧栏：访客计数器 */
+body.hotel .hotel-service-index{border:2px groove #c9bb9e;background:#f1e8d2;}
+body.hotel .hotel-service-index::after{content:"访客计数　您是第 000113 位住客";
+  display:block;margin-top:12px;padding:8px 6px;text-align:center;font-size:12px;
+  color:#3d5a2a;font-family:"SimSun",monospace;letter-spacing:.08em;
+  background:#0a0a0a;border:2px inset #6f6f6f;color:#5fd14a;
+  text-shadow:0 0 4px rgba(95,209,74,.7);}
+body.hotel .hotel-service-index h2{font-family:"SimHei","Heiti SC",sans-serif;}
+body.hotel .hotel-service-index li{border-bottom:1px dotted var(--line);}
+
+/* NEW / HOT 小标 */
+body.hotel .room-unavailable{font-family:"SimHei","Heiti SC",sans-serif;}
+body.hotel .room-unavailable::before{content:"停";display:inline-block;margin-right:6px;
+  width:18px;height:18px;line-height:18px;text-align:center;background:#c0392b;color:#fff;
+  font-size:12px;border:1px solid #7d2018;vertical-align:middle;}
+
+/* 表格：立体表头 */
+body.hotel thead th{background:linear-gradient(180deg,#7d5634,#5d3f26);
+  border:1px outset #a1764a;font-family:"SimHei","Heiti SC",sans-serif;}
+body.hotel th,body.hotel td{border:1px solid #b6a57f;}
+body.hotel tbody tr:nth-child(even){background:#f0e6cd;}
+
+/* 底栏：建议分辨率 / 备案 */
+body.hotel .footer-hotel{text-align:center;font-size:12px;color:#6a5a3c;
+  border-top:4px double var(--wood);background:linear-gradient(180deg,#ece0c2,#e2d3ad);
+  padding:12px 16px 16px;}
+body.hotel .footer-hotel::after{content:"建议使用 1024 × 768 分辨率 / IE6.0 以上浏览器浏览　│　回水镇网络文化站　│　本站为虚构作品，如有雷同……";
+  display:block;margin-top:6px;color:#8a6f3e;letter-spacing:.06em;}
+
+/* ============================================================================
+   古早组 A：FORUM 回水生活（约2008 Discuz! / PHPWind 社区）
+   经典 Discuz 蓝，高密度表格、渐变立体表头、文件夹图标、楼层、头像位、
+   楼主牌、签名档、分页、像素按钮 —— 与其它站点彻底区分
+   ========================================================================== */
+body.forum{
+  --paper:#ffffff; --paper2:#f4f8fc; --wood:#1e63b3; --wood2:#3d7fc4;
+  --sign:#1e63b3; --stamp:#e8610a; --line:#c7d7ea; --oldlink:#0b4fb0;
+  font-family:"SimSun","Songti SC",serif;font-size:13px;color:#1c2a3a;
+  background-color:#8fa9c8;
+  background-image:
+    linear-gradient(180deg,#a9c0dc,#87a3c6),
+    repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 2px,transparent 2px 5px);
+}
+body.forum #main{max-width:1000px;margin:10px auto;background:#fff;
+  border:1px solid #5b7fb0;box-shadow:0 0 0 1px #fff inset,0 8px 22px rgba(20,45,80,.35);}
+
+/* 顶部会话条：深蓝 */
+body.forum .forum-session{background:linear-gradient(180deg,#2f74c0,#1c5699);
+  color:#eaf3ff;border-bottom:1px solid #143f72;font-size:12px;}
+body.forum .forum-session a{color:#ffe27a;text-decoration:underline;}
+body.forum .forum-session a:hover{color:#fff;}
+
+/* 横幅 */
+body.forum .forum-mast{display:block;padding:14px 18px 12px;text-align:left;
+  background:linear-gradient(180deg,#eef5fd,#d8e8fa);border-bottom:1px solid #b7cdec;}
+body.forum .forum-mast small{display:block;color:#5a7ca6;letter-spacing:.2em;font-size:11px;}
+body.forum .forum-mast a{display:inline-block;font-size:30px;font-weight:900;color:#1359a8;
+  text-decoration:none;letter-spacing:.1em;font-family:"SimHei","Heiti SC","Microsoft YaHei",sans-serif;
+  text-shadow:1px 1px 0 #fff;}
+body.forum .forum-mast p{margin:4px 0 0;color:#4a6c96;font-size:12px;letter-spacing:.1em;}
+
+/* 导航：蓝色渐变立体 */
+body.forum .platform-menu{background:linear-gradient(180deg,#4a8ad0,#2a68b4);
+  border:1px solid #1c5294;border-top:2px outset #7fb0e2;padding:2px;gap:1px;}
+body.forum .platform-menu a{color:#eef6ff;border:1px solid transparent;border-right:1px solid rgba(20,60,120,.4);
+  font-family:"SimHei","Heiti SC",sans-serif;font-size:13px;letter-spacing:.08em;
+  padding:7px 8px;text-decoration:none;}
+body.forum .platform-menu a.current,body.forum .platform-menu a:hover{
+  background:linear-gradient(180deg,#1d5aa6,#164584);color:#ffe27a;border:1px solid #0f3a72;}
+
+/* 正文链接蓝 */
+body.forum main a{color:var(--oldlink);}
+body.forum main a:hover{color:#e8610a;}
+
+/* 公告条：黄底 */
+body.forum .board-notice{background:linear-gradient(180deg,#fff7d6,#fbe9a8);
+  border:1px solid #e3c46a;border-left:4px solid #e8a419;color:#6a4a10;
+  padding:6px 12px;margin:12px 14px;font-size:13px;}
+body.forum .board-notice::before{content:"【公告】";color:#c0392b;font-weight:700;}
+body.forum .board-heading{padding:12px 14px 6px;border-bottom:0;}
+body.forum .board-heading h1{font-size:22px;color:#1359a8;
+  font-family:"SimHei","Heiti SC",sans-serif;}
+body.forum .board-heading span{color:#5a7ca6;font-size:12px;}
+
+/* 主题列表表格 */
+body.forum .topic-table{margin:8px 14px;border:1px solid #9db8dc;background:#fff;}
+body.forum .topic-table-label{display:grid;grid-template-columns:1fr 220px;
+  background:linear-gradient(180deg,#5b95d6,#3a76bd);color:#fff;
+  font-family:"SimHei","Heiti SC",sans-serif;font-size:13px;padding:5px 10px;
+  border:1px outset #7fb0e2;}
+body.forum .topic-table>ul{list-style:none;margin:0;padding:0;}
+body.forum .topic-table li{display:grid;grid-template-columns:1fr 220px;align-items:center;
+  padding:6px 10px;border-bottom:1px solid #dce7f5;background:#fff;}
+body.forum .topic-table li:nth-child(even){background:#f5f9ff;}
+body.forum .topic-table li:hover{background:#eaf3ff;}
+body.forum .index-subject{display:flex;align-items:center;gap:8px;}
+body.forum .index-subject::before{content:"";width:18px;height:14px;flex:0 0 auto;
+  background:linear-gradient(180deg,#ffd76a,#e8a419);
+  clip-path:polygon(0 0,78% 0,100% 30%,100% 100%,0 100%);
+  border:1px solid #b5790f;}
+body.forum .topic-table li:has(.index-kind) .index-subject::before{
+  background:linear-gradient(180deg,#ff8a5a,#d9481f);clip-path:polygon(0 0,100% 0,100% 100%,0 100%);}
+body.forum .index-kind{font-size:11px;padding:0 5px;margin-right:2px;color:#fff;
+  background:#e8610a;border:1px solid #b5470a;font-family:"SimHei",sans-serif;}
+body.forum .index-subject a{font-weight:700;text-decoration:none;}
+body.forum .topic-author{display:block;color:#666;font-size:12px;margin-top:2px;}
+body.forum .topic-last{color:#555;font-size:12px;line-height:1.5;text-align:right;}
+body.forum .forum-pages{margin:8px 14px;padding:6px 10px;background:#eef4fc;border:1px solid #c7d7ea;
+  font-size:12px;color:#555;}
+body.forum .forum-pages::before{content:"页数：";color:#1359a8;font-weight:700;}
+
+/* 帖子内页：楼层 */
+body.forum .topic-title{padding:10px 14px 4px;background:#f0f6ff;border-bottom:1px solid #c7d7ea;}
+body.forum .topic-title p{color:#5a7ca6;font-size:12px;margin:0;}
+body.forum .topic-title h1{font-size:20px;color:#1359a8;margin:2px 0;
+  font-family:"SimHei","Heiti SC",sans-serif;}
+body.forum .thread{margin:10px 14px;border:1px solid #9db8dc;}
+body.forum .forum-floor{display:grid;grid-template-columns:140px 1fr;
+  border-bottom:1px solid #c7d7ea;background:#fff;}
+body.forum .forum-floor:last-child{border-bottom:0;}
+body.forum .forum-floor>header{grid-row:1;grid-column:1;background:#eef4fc;
+  border-right:1px solid #c7d7ea;padding:10px 8px;text-align:center;font-size:12px;color:#444;}
+body.forum .forum-floor>header::before{content:"";display:block;width:64px;height:64px;margin:0 auto 6px;
+  background:linear-gradient(180deg,#cfdcec,#a9c0dc);border:1px solid #8fa9c8;position:relative;}
+body.forum .forum-floor>header strong{display:block;color:#1359a8;font-size:13px;}
+body.forum .forum-floor>header small{display:block;color:#888;margin:2px 0;}
+body.forum .forum-floor>header span{display:inline-block;margin-top:3px;padding:0 6px;font-size:11px;
+  background:#cfdcec;color:#34506e;border:1px solid #9db8dc;}
+body.forum .forum-floor:first-child>header span{background:#e8610a;color:#fff;border-color:#b5470a;
+  font-family:"SimHei",sans-serif;}
+body.forum .floor-copy{grid-column:2;padding:10px 14px;font-size:14px;line-height:1.9;}
+body.forum .floor-copy p{margin:0 0 8px;}
+body.forum .floor-copy::after{content:"…………………………………… 签名档 ……………………………………";
+  display:block;margin-top:10px;padding-top:6px;border-top:1px dashed #b9cbe4;
+  color:#9aaec8;font-size:11px;text-align:center;}
+body.forum .forum-floor:last-child .floor-copy::after{content:"";border:0;}
+body.forum .floor-copy img{border:1px solid #9db8dc;}
+
+/* 引用 / 发表按钮：像素立体 */
+body.forum .quote-post,body.forum .record-action button,body.forum .operation-form button{
+  background:linear-gradient(180deg,#fbfdff,#d7e6f7);border:1px solid #7fa4cf;
+  border-top-color:#fff;border-left-color:#fff;color:#1359a8;
+  font-family:"SimSun",serif;font-size:12px;padding:3px 12px;cursor:pointer;}
+body.forum .quote-post:hover{background:linear-gradient(180deg,#eaf3ff,#c2d8f2);color:#e8610a;}
+body.forum .record-action,body.forum .operation-form{margin:10px 14px;padding:10px 12px;
+  background:#f4f8fc;border:1px solid #c7d7ea;}
+body.forum .record-action input,body.forum .operation-form input,
+body.forum .record-action textarea,body.forum .operation-form textarea,
+body.forum .file-field input[type=text]{border:1px solid #7fa4cf;border-top-color:#5b7fb0;border-left-color:#5b7fb0;
+  background:#fff;font-family:"SimSun",serif;padding:3px 5px;font-size:13px;}
+
+/* 底栏：Powered by 风格 */
+body.forum .footer-forum{text-align:center;font-size:12px;color:#dce8f7;
+  background:linear-gradient(180deg,#2f74c0,#1c5699);padding:10px 16px;line-height:1.9;}
+body.forum .footer-forum a{color:#ffe27a;}
+body.forum .footer-forum::after{content:"Powered by 回水生活 BBS　│　本社区及账号均为虚构　│　GMT+8";
+  display:block;color:#bcd4f0;}
+
+/* ============================================================================
+   第二轮增强层 · 古早组 B：ALBUM 许家的相册（约2006 早期网络相册）
+   旧相纸暖橙 + 墨绿；Win9x 窗体口令框；相纸白边、底片孔、手写日期
+   ========================================================================== */
+body.album{
+  --paper:#f7f0e2; --paper2:#efe5d0; --wood:#7a4a22; --wood2:#a86a34;
+  --sign:#9a4a1e; --stamp:#3f5a44; --line:#d3c2a2; --oldlink:#1f5c3a;
+  font-family:"SimSun","Songti SC",serif;font-size:13px;color:#33281a;
+  background-color:#3c4a3c;
+  background-image:
+    radial-gradient(rgba(255,255,255,.06) 1px,transparent 1.5px),
+    linear-gradient(180deg,#4a5a48,#33402f);
+  background-size:6px 6px,100% 100%;
+}
+body.album #main{max-width:980px;margin:12px auto;background:var(--paper);
+  border:1px solid #202a1e;box-shadow:0 0 0 1px #6a7a5a,0 10px 26px rgba(0,0,0,.5);}
+
+/* 顶部条 / 横幅 */
+body.album .album-service-bar{background:linear-gradient(180deg,#8a5630,#6a3e1e);
+  color:#f3e4cf;font-size:12px;border-bottom:1px solid #4a2a12;}
+body.album .album-service-bar a{color:#ffd98a;}
+body.album .family-mast{display:block;padding:14px 18px;text-align:left;
+  background:linear-gradient(180deg,#d99a55,#b9742f);border-bottom:2px solid #7a4a1e;}
+body.album .family-mast small{display:block;color:#f6e6cf;letter-spacing:.25em;font-size:11px;}
+body.album .family-mast a{display:inline-block;font-size:28px;font-weight:900;color:#fff;
+  text-decoration:none;letter-spacing:.08em;font-family:"SimHei","Heiti SC",sans-serif;
+  text-shadow:1px 2px 0 rgba(90,50,15,.5);}
+body.album .family-mast p{margin:4px 0 0;color:#fbe7c8;font-size:12px;letter-spacing:.12em;}
+body.album .platform-menu{background:#6a3e1e;border:1px solid #4a2a12;padding:2px;gap:2px;}
+body.album .platform-menu a{color:#f3e4cf;border:1px outset #b98a5a;font-family:"SimHei",sans-serif;
+  font-size:13px;padding:6px 8px;text-decoration:none;background:linear-gradient(180deg,#a86a34,#85502a);}
+body.album .platform-menu a.current,body.album .platform-menu a:hover{
+  background:linear-gradient(180deg,#6a3e1e,#52301a);color:#ffd98a;border-style:inset;}
+body.album main a{color:var(--oldlink);}
+body.album main a:hover{color:#c0392b;}
+
+/* 口令门 → Win9x 经典窗体 */
+body.album .gate{max-width:430px;margin:34px auto;background:#d4d0c8;
+  border:2px solid #808080;border-top-color:#fff;border-left-color:#fff;
+  box-shadow:4px 4px 0 rgba(0,0,0,.35);font-size:12px;color:#000;padding:0;}
+body.album .gate h1{margin:0;padding:4px 6px 4px 8px;font-size:12px;font-weight:700;color:#fff;
+  font-family:"SimSun",sans-serif;
+  background:linear-gradient(90deg,#000080,#1084d0);
+  display:flex;justify-content:space-between;align-items:center;}
+body.album .gate h1::after{content:"×";display:inline-block;width:16px;height:14px;line-height:13px;
+  text-align:center;background:#d4d0c8;color:#000;border:1px solid #808080;
+  border-top-color:#fff;border-left-color:#fff;font-weight:700;}
+body.album .gate>p{margin:14px 14px 8px;line-height:1.8;color:#222;}
+body.album .gate a{display:inline-block;margin:0 14px 8px;color:#0033cc;text-decoration:underline;}
+body.album .gate form{margin:6px 14px 16px;padding:12px;background:#ece9d8;
+  border:1px solid #808080;border-top-color:#404040;border-left-color:#404040;
+  border-bottom-color:#fff;border-right-color:#fff;}
+body.album .gate label{display:block;margin-bottom:6px;color:#000;}
+body.album .gate input{width:100%;box-sizing:border-box;padding:3px 4px;margin-bottom:10px;
+  background:#fff;border:2px solid #808080;border-top-color:#404040;border-left-color:#404040;
+  border-bottom-color:#fff;border-right-color:#fff;font-family:"SimSun",serif;font-size:13px;}
+body.album .gate button{display:block;margin:0 auto;padding:2px 18px;background:#d4d0c8;
+  border:2px solid #808080;border-top-color:#fff;border-left-color:#fff;
+  border-bottom-color:#404040;border-right-color:#404040;font-family:"SimSun",serif;font-size:12px;cursor:pointer;}
+body.album .gate button:active{border:2px solid #404040;border-top-color:#808080;border-left-color:#808080;
+  border-bottom-color:#fff;border-right-color:#fff;}
+body.album .gate #access-feedback{margin:0 14px 12px;color:#c00;}
+
+/* 目录：三卷相纸贴片 */
+body.album .album-directory-heading{padding:12px 16px 4px;}
+body.album .album-directory-heading h1{font-size:22px;color:#7a4a22;font-family:"SimHei",sans-serif;}
+body.album .album-directory-heading p{color:#8a6a3a;font-size:12px;margin:0;}
+body.album .album-directory-heading span{color:#3f5a44;font-size:12px;}
+body.album .album-note{margin:8px 16px;padding:10px 14px;background:#efe5d0;border:1px dashed #b59a6a;
+  font-size:13px;line-height:1.9;}
+body.album .roll-directory{list-style:none;margin:12px 16px;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+body.album .roll-directory li{background:#fff;padding:10px 10px 14px;
+  border:1px solid #c9b78f;box-shadow:2px 3px 7px rgba(80,55,20,.3);}
+body.album .roll-directory li:nth-child(1){transform:rotate(-1.4deg);}
+body.album .roll-directory li:nth-child(2){transform:rotate(.9deg);}
+body.album .roll-directory li:nth-child(3){transform:rotate(-.6deg);}
+body.album .roll-directory .roll-cover{width:100%;height:120px;object-fit:cover;display:block;
+  filter:sepia(.28) contrast(.96);border:1px solid #d8c8a2;}
+body.album .roll-directory a{font-family:"SimHei",sans-serif;font-weight:700;text-decoration:none;
+  display:block;margin:8px 0 2px;color:#7a4a22;}
+body.album .roll-directory small{color:#8a6a3a;font-size:11px;}
+body.album .roll-directory .roll-meta{display:block;color:#3f5a44;font-size:11px;margin-top:3px;}
+
+/* 内页：相纸 + 底片孔 + 手写日期 */
+body.album .tailoring-heading,body.album .street-heading,body.album .old-letter-heading,
+body.album .school-heading{padding:10px 16px 4px;}
+body.album .tailoring-heading h1,body.album .street-heading h1,body.album .old-letter-heading h1,
+body.album .school-heading h1{font-size:21px;color:#7a4a22;font-family:"SimHei",sans-serif;}
+body.album .tailoring-heading p,body.album .street-heading p,body.album .old-letter-heading p,
+body.album .school-heading p{color:#8a6a3a;font-size:12px;margin:0;}
+body.album figure{background:#fff;padding:10px;border:1px solid #c9b78f;
+  box-shadow:2px 3px 8px rgba(80,55,20,.28);}
+body.album figure img{width:100%;display:block;filter:sepia(.22) contrast(.97);border:1px solid #e2d6b8;}
+body.album figcaption{margin-top:8px;font-family:"Kaiti SC","STKaiti","KaiTi",serif;
+  color:#5a4626;font-size:13px;text-align:center;}
+body.album figcaption::before{content:"冲印日期 · ";color:#9a7a44;}
+body.album .tailoring-life p,body.album .street-photo-story p,
+body.album .school-back-writing,body.album .letter-copy{font-size:13px;line-height:1.95;}
+body.album .letter-facsimile{background:
+  repeating-linear-gradient(180deg,transparent 0 26px,#e7d9b6 26px 27px);
+  padding:14px 16px;}
+body.album .footer-album{text-align:center;font-size:12px;color:#e9e0c8;
+  background:linear-gradient(180deg,#6a3e1e,#4a2a12);padding:10px 16px;}
+body.album .footer-album::after{content:"留影私人相册　│　冲洗 · 扫描 · 分享　│　本相册为虚构作品";
+  display:block;color:#d8b98a;margin-top:3px;}
+
+/* ============================================================================
+   古早组 B：MESSAGE 回水邮局（约2005 老版 Webmail / Outlook Express）
+   灰白浅蓝、凹陷面板、文件夹树、像素工具栏、邮件列表表格、未读小黄信封
+   ========================================================================== */
+body.message{
+  --paper:#ffffff; --paper2:#eef3f9; --wood:#1f5e9e; --wood2:#4a86c4;
+  --sign:#0a4f96; --stamp:#c0392b; --line:#b9c8da; --oldlink:#0033cc;
+  font-family:"SimSun","Songti SC",serif;font-size:12px;color:#1a2430;
+  background-color:#5d7fa6;
+  background-image:linear-gradient(180deg,#6f92b8,#4f6f98);
+}
+body.message #main{max-width:1020px;margin:10px auto;background:#ece9d8;
+  border:2px solid #2a4a6e;box-shadow:0 0 0 1px #aac2de,0 10px 24px rgba(10,25,45,.45);}
+
+/* 标题栏 / 品牌 */
+body.message .mail-account-bar{background:linear-gradient(90deg,#0a246a,#3a6ea5);
+  color:#fff;font-size:12px;border-bottom:1px solid #06204a;}
+body.message .mail-account-bar a{color:#ffe27a;}
+body.message .mail-brand{background:linear-gradient(180deg,#f6f8fb,#dde7f2);
+  border-bottom:1px solid #b9c8da;padding:10px 14px;}
+body.message .mail-brand small{color:#5a7ca6;letter-spacing:.2em;font-size:11px;}
+body.message .mail-brand a{font-size:24px;font-weight:900;color:#0a4f96;text-decoration:none;
+  font-family:"SimHei","Heiti SC",sans-serif;letter-spacing:.06em;}
+body.message .mail-brand p{margin:3px 0 0;color:#6a86a6;font-size:12px;}
+
+/* 文件夹树：凹陷面板 */
+body.message .mail-folders{background:#ece9d8;border-right:2px solid #808080;
+  border-top-color:#fff;padding:8px;font-size:12px;}
+body.message .mail-folders h2{font-size:12px;background:linear-gradient(180deg,#f7f9fb,#cfdbe8);
+  border:1px solid #a9bccf;padding:3px 6px;margin:0 0 8px;font-family:"SimHei",sans-serif;color:#1a4a80;}
+body.message .mail-folders ul{list-style:none;margin:0;padding:0;}
+body.message .mail-folders li{padding:2px 4px;}
+body.message .mail-folders li.current{background:#3a6ea5;color:#fff;}
+body.message .mail-folders a{color:#1a2430;text-decoration:none;display:block;}
+body.message .mail-folders li.current a{color:#fff;}
+body.message .mail-folders a::before{content:"✉";margin-right:5px;color:#d99a19;}
+body.message .mail-folders li.current a::before{color:#ffe27a;}
+
+/* 邮件列表表格 */
+body.message .mail-list-title{padding:8px 12px 4px;background:#e7eef7;}
+body.message .mail-list-title h1{font-size:18px;color:#0a4f96;margin:0;font-family:"SimHei",sans-serif;}
+body.message .mail-list-title span{color:#6a86a6;font-size:12px;}
+body.message .mail-list{border-collapse:collapse;width:100%;background:#fff;font-size:12px;}
+body.message .mail-list thead th{background:linear-gradient(180deg,#f4f8fc,#d3e0ef);
+  border:1px solid #a9bccf;padding:4px 8px;text-align:left;color:#1a4a80;font-family:"SimHei",sans-serif;}
+body.message .mail-list td{border:1px solid #d7e0ec;padding:4px 8px;}
+body.message .mail-list tbody tr:nth-child(even){background:#f3f7fc;}
+body.message .mail-list tbody tr:hover{background:#e3f0ff;}
+body.message .mail-list td a{color:#0033cc;text-decoration:none;}
+body.message .mail-has-attachment{color:#888;font-size:11px;}
+body.message .mail-has-attachment::before{content:"📎 ";}
+
+/* 邮件正文 / 工具栏：像素立体 */
+body.message .message-controls{background:#e7eef7;border-bottom:1px solid #b9c8da;padding:5px 10px;}
+body.message .message-controls a,body.message .message-controls button,
+body.message .mail-star{display:inline-block;margin-right:6px;padding:3px 10px;
+  background:linear-gradient(180deg,#fbfdff,#d3e0ef);border:1px solid #8aa4c4;
+  border-top-color:#fff;border-left-color:#fff;color:#0a4f96;
+  font-family:"SimSun",serif;font-size:12px;text-decoration:none;cursor:pointer;}
+body.message .message-controls a:hover,body.message .message-controls button:hover{color:#c0392b;}
+body.message .first-letter-title h1,body.message .mail-list-title~h1{font-family:"SimHei",sans-serif;color:#0a4f96;}
+body.message .message-letter,body.message .first-letter{background:#fff;
+  border:1px solid #b9c8da;border-top-color:#808080;border-left-color:#808080;
+  border-bottom-color:#fff;border-right-color:#fff;padding:12px 16px;font-size:13px;line-height:1.95;}
+body.message .mail-attachments{background:#eef3f9;border:1px solid #b9c8da;padding:8px 12px;font-size:12px;}
+body.message .mail-attachments h2{font-size:13px;color:#1a4a80;font-family:"SimHei",sans-serif;}
+body.message .footer-message{text-align:center;font-size:12px;color:#dce8f5;
+  background:linear-gradient(180deg,#2f66a0,#1c4a80);padding:9px 16px;}
+body.message .footer-message::after{content:"回水邮局 Webmail　│　本邮箱及邮件均为虚构　│　请勿向陌生人透露口令";
+  display:block;color:#bcd4ee;margin-top:2px;}
+
+/* ============================================================================
+   第二轮增强层 · 精致组 C：PAPER 回水周报（纸质报纸 · 精致拟态）
+   纸张纤维 / 报头双粗线 / 期号天气农历 / 首字下沉 / 竖分栏线 / 楷体图注
+   ========================================================================== */
+body.paper{
+  --paper:#f1e8d2; --paper2:#e8dcc0; --wood:#3a2c18; --wood2:#6a5430;
+  --sign:#5a1f16; --stamp:#7a3a1a; --line:#b9a878;
+  font-family:"FangSong","STFangsong","SimSun",serif;font-size:14px;color:#241c10;
+  background-color:#4a3c26;
+  background-image:
+    radial-gradient(rgba(0,0,0,.18) 1px,transparent 1.6px),
+    linear-gradient(180deg,#57472e,#382c1a);
+  background-size:5px 5px,100% 100%;
+}
+body.paper #main{max-width:1100px;margin:16px auto;background:var(--paper);
+  border:1px solid #2a2010;
+  box-shadow:0 0 0 1px #8a744a,0 14px 34px rgba(0,0,0,.55);
+  background-image:
+    repeating-linear-gradient(90deg,rgba(120,90,40,.04) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(0deg,rgba(120,90,40,.045) 0 1px,transparent 1px 4px),
+    radial-gradient(rgba(120,90,40,.06) 1px,transparent 1.5px);}
+
+/* 报眉 */
+body.paper .press-topline{display:flex;justify-content:space-between;align-items:center;
+  padding:5px 16px;font-size:12px;color:#5a4626;border-bottom:1px solid #b9a878;background:#ece2c6;}
+body.paper .press-topline a{color:#5a1f16;text-decoration:underline;}
+
+/* 报头：双粗线 + 中央大字 */
+body.paper .newspaper-mast{display:flex;justify-content:space-between;align-items:flex-end;
+  gap:18px;padding:14px 18px 12px;background:
+    linear-gradient(180deg,rgba(255,255,255,.25),transparent);
+  border-top:3px solid #2a2010;border-bottom:3px solid #2a2010;position:relative;}
+body.paper .newspaper-mast::after{content:"";position:absolute;left:18px;right:18px;bottom:4px;
+  border-bottom:1px solid #2a2010;}
+body.paper .newspaper-mast span{font-size:14px;color:#5a4626;line-height:1.7;
+  font-family:"Kaiti SC","KaiTi",serif;white-space:pre-line;}
+body.paper .newspaper-mast a{font-size:52px;font-weight:900;color:#1c1408;text-decoration:none;
+  letter-spacing:.08em;line-height:1;font-family:"SimSun","Songti SC",serif;
+  text-shadow:1px 1px 0 rgba(0,0,0,.12);}
+body.paper .newspaper-mast small{font-size:12px;color:#5a4626;text-align:right;line-height:1.8;}
+body.paper .platform-menu{background:#3a2c18;border:0;padding:3px 16px;gap:4px;justify-content:flex-start;}
+body.paper .platform-menu a{color:#e8dcc0;font-size:13px;padding:4px 12px;border:0;
+  font-family:"FangSong",serif;letter-spacing:.1em;}
+body.paper .platform-menu a.current,body.paper .platform-menu a:hover{color:#ffd98a;text-decoration:underline;}
+
+/* 头条 / 首页 */
+body.paper .press-home{padding:16px 18px;}
+body.paper .press-rubric{font-family:"Kaiti SC","KaiTi",serif;color:#7a3a1a;font-size:13px;margin:0 0 4px;}
+body.paper .press-current h1{font-size:30px;line-height:1.4;color:#1c1408;margin:0 0 10px;
+  font-family:"SimHei","Heiti SC",sans-serif;font-weight:900;}
+body.paper .press-current p{line-height:1.95;}
+body.paper .press-current-list{list-style:none;padding:0;border-top:1px solid #b9a878;}
+body.paper .press-current-list li{padding:6px 0;border-bottom:1px dotted #b9a878;font-weight:700;}
+body.paper .press-current-list time{float:right;color:#7a6438;font-weight:400;}
+body.paper .press-edition{border:2px solid #2a2010;padding:12px;text-align:center;background:#ece2c6;}
+body.paper .press-edition span{display:block;font-family:"Kaiti SC",serif;color:#7a3a1a;}
+body.paper .press-edition strong{display:block;font-size:20px;margin:4px 0;}
+body.paper main a{color:#4a2e14;text-decoration:underline;}
+body.paper main a:hover{color:#8a2a1c;}
+
+/* 正文报道：首字下沉 + 分栏线 + 楷体图注 */
+body.paper .press-story-heading{padding:12px 18px 6px;border-bottom:2px solid #2a2010;}
+body.paper .press-story-heading h1{font-size:26px;color:#1c1408;font-family:"SimHei",sans-serif;margin:2px 0;}
+body.paper .press-story-heading p{color:#7a6438;font-size:12px;margin:0;}
+body.paper .press-story-heading span{font-family:"Kaiti SC",serif;color:#5a4626;font-size:13px;}
+body.paper .flood-report{padding:14px 18px;}
+body.paper .news-lead{font-size:15px;line-height:2;margin:0 0 12px;}
+body.paper .flood-report>.news-lead::first-letter{float:left;font-size:52px;line-height:.9;
+  padding:4px 8px 0 0;color:#5a1f16;font-family:"SimSun",serif;font-weight:900;}
+body.paper .news-columns{column-count:2;column-rule:1px solid #b9a878;column-gap:26px;}
+body.paper .news-columns p{margin:0 0 10px;line-height:1.95;text-align:justify;}
+body.paper .flood-report figure,.press-report-bottom figure,
+body.paper .correction-original figure{background:#fbf5e2;padding:6px;border:1px solid #b9a878;}
+body.paper figcaption{font-family:"Kaiti SC","KaiTi",serif;color:#5a4626;font-size:12px;margin-top:4px;}
+body.paper .correction-original,.moving-feature,.register-explanation{padding:14px 18px;}
+body.paper table{border-collapse:collapse;width:100%;}
+body.paper th,body.paper td{border:1px solid #9a8858;padding:6px 9px;}
+body.paper thead th{background:#3a2c18;color:#e8dcc0;font-family:"SimHei",sans-serif;}
+body.paper .footer-paper{text-align:center;font-size:12px;color:#cdbd94;
+  background:#2a2010;padding:9px 16px;}
+body.paper .footer-paper::after{content:"回水周报 · 逢周五出版　│　资料室藏 2009—2014　│　本报为虚构作品";
+  display:block;margin-top:2px;}
+
+/* ============================================================================
+   精致组 C：STORE 镇西旧物保管点（老式纸质账册 / 内部登记）
+   牛皮纸 + 朱红印章 + 墨绿表格线；横线手账、装订孔、收讫章；去现代卡片
+   ========================================================================== */
+body.store{
+  --paper:#ede0bd; --paper2:#e3d3a8; --wood:#2f5a45; --wood2:#4a7a5e;
+  --sign:#8a2a1c; --stamp:#b03a22; --line:#b3a068;
+  font-family:"FangSong","STFangsong","SimSun",serif;font-size:14px;color:#28342a;
+  background-color:#3a3226;
+  background-image:
+    radial-gradient(rgba(0,0,0,.2) 1px,transparent 1.6px),
+    linear-gradient(180deg,#47402e,#2c2618);
+  background-size:5px 5px,100% 100%;
+}
+body.store #main{max-width:1040px;margin:14px auto;background:var(--paper);
+  border:1px solid #1e2418;box-shadow:0 0 0 1px #8a7a4a,0 12px 30px rgba(0,0,0,.5);
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 31px,rgba(47,90,69,.13) 31px 32px),
+    radial-gradient(rgba(120,90,40,.07) 1px,transparent 1.5px);}
+/* 装订孔 */
+body.store #main::before{content:"";position:fixed;}
+body.store .store-page{position:relative;}
+body.store .store-page::before{content:"";position:absolute;left:6px;top:24px;bottom:24px;width:12px;
+  background-image:radial-gradient(circle at 6px 12px,#6a5a38 4px,transparent 5px);
+  background-size:12px 46px;background-repeat:repeat-y;}
+
+/* 顶部 */
+body.store .registry-topline{background:#2f5a45;color:#dceadf;font-size:12px;padding:4px 16px;letter-spacing:.1em;}
+body.store .records-mast{display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(180deg,#3a6a52,#2c5240);padding:12px 18px;border-bottom:2px solid #1e3a2c;}
+body.store .records-mast small{display:block;color:#b9d4c4;font-size:11px;letter-spacing:.2em;}
+body.store .records-mast a{font-size:26px;font-weight:900;color:#fff;text-decoration:none;
+  font-family:"SimHei","Heiti SC",sans-serif;letter-spacing:.06em;text-shadow:1px 1px 0 rgba(0,0,0,.3);}
+body.store .records-mast span{display:block;color:#cfe3d6;font-size:12px;margin-top:3px;}
+body.store .records-mast input{border:1px inset #8aa4c4;padding:3px 6px;font-family:FangSong,serif;}
+body.store .records-mast button{background:linear-gradient(180deg,#e8dcc0,#cdb98a);
+  border:1px outset #b9a578;font-family:SimHei,sans-serif;padding:3px 12px;cursor:pointer;}
+body.store .platform-menu{background:#26463a;border:0;padding:2px 14px;gap:2px;}
+body.store .platform-menu a{color:#dceadf;font-size:13px;padding:5px 12px;border:1px solid transparent;
+  font-family:SimHei,sans-serif;}
+body.store .platform-menu a.current,body.store .platform-menu a:hover{
+  background:#1e3a2c;color:#ffd98a;border:1px solid #2f5a45;}
+body.store main a{color:#2f5a45;text-decoration:underline;}
+body.store main a:hover{color:#b03a22;}
+
+/* 登记处单据 + 收讫章 */
+body.store .custody-heading{padding:14px 22px 6px;}
+body.store .custody-heading h1{font-size:24px;color:#28342a;font-family:SimHei,sans-serif;margin:2px 0;}
+body.store .custody-heading span{color:#8a2a1c;font-size:12px;letter-spacing:.2em;}
+body.store .custody-heading p{color:#5a6a4a;font-size:13px;}
+body.store .registry-office{position:relative;display:grid;grid-template-columns:1fr 200px;gap:18px;
+  margin:10px 22px;padding:16px 20px;background:rgba(255,250,235,.55);
+  border:2px solid #8a7a4a;box-shadow:0 0 0 1px #ede0bd inset;}
+body.store .registry-office h2{margin:0 0 8px;font-family:SimHei,sans-serif;color:#2f5a45;}
+body.store .registry-office p{font-size:13px;line-height:1.9;margin:0 0 8px;}
+body.store .registry-office aside{border:1px solid #8a7a4a;background:#e3d3a8;padding:10px;text-align:center;}
+body.store .registry-office aside span{font-size:11px;color:#6a5a38;}
+body.store .registry-office aside strong{display:block;font-size:18px;color:#8a2a1c;margin:3px 0;}
+body.store .registry-office aside small{font-size:11px;color:#6a5a38;}
+body.store .registry-office::after{content:"收　讫";position:absolute;right:180px;top:8px;
+  width:74px;height:74px;line-height:70px;text-align:center;border:3px solid #b03a22;
+  border-radius:50%;color:#b03a22;font-size:24px;font-weight:900;
+  font-family:"SimSun",serif;transform:rotate(-13deg);opacity:.72;
+  background:radial-gradient(circle,transparent 60%,rgba(176,58,34,.08));}
+
+/* 记录行：横线账册，去卡片 */
+body.store .registry-list-heading{margin:16px 22px 4px;font-size:16px;color:#2f5a45;
+  font-family:SimHei,sans-serif;border-bottom:2px solid #2f5a45;padding-bottom:4px;}
+body.store table{border-collapse:collapse;width:calc(100% - 44px);margin:6px 22px;font-size:13px;background:transparent;}
+body.store th,body.store td{border:0;border-bottom:1px solid #a9966a;padding:7px 9px;text-align:left;}
+body.store thead th{background:#2f5a45;color:#e3f0e6;border-bottom:1px solid #1e3a2c;font-family:SimHei,sans-serif;}
+body.store tbody tr:nth-child(even){background:rgba(255,250,235,.4);}
+body.store .registry-catalogue{list-style:none;margin:6px 22px;padding:0;}
+body.store .registry-catalogue li{padding:6px 4px;border-bottom:1px dotted #a9966a;font-size:13px;}
+body.store .registry-catalogue li::before{content:"▸";color:#8a2a1c;margin-right:7px;}
+/* 单据/编号表 */
+body.store .transfer-heading h1,.batch-heading h1{font-family:SimHei,sans-serif;color:#8a2a1c;}
+body.store .document-rows,body.store .table-scroll{margin:10px 22px;}
+body.store .footer-store{text-align:center;font-size:12px;color:#cdd9c8;
+  background:#26463a;padding:9px 16px;}
+body.store .footer-store::after{content:"镇西旧物保管点 · 账册登记　│　骑缝编号以原件为准　│　本机构为虚构";
+  display:block;margin-top:2px;color:#a9c4b4;}
+
+/* ============================================================================
+   精致组 C：HOSPITAL 回水市医院（约2010 官方医院/政务系统，精致偏冷）
+   冷青白 + 红十字红头；公文黑体标题、仿宋正文、编号章、授权书、红色公章
+   ========================================================================== */
+body.hospital{
+  --paper:#f6f9fb; --paper2:#e9f0f5; --wood:#2a5a72; --wood2:#4a7c96;
+  --sign:#b0261e; --stamp:#c0392b; --line:#c2d2de;
+  font-family:"FangSong","STFangsong","SimSun",serif;font-size:14px;color:#1c2a33;
+  background-color:#7a92a6;
+  background-image:linear-gradient(180deg,#8ea6ba,#6a849c);
+}
+body.hospital #main{max-width:1020px;margin:12px auto;background:var(--paper);
+  border:1px solid #4a6278;box-shadow:0 0 0 1px #fff inset,0 10px 26px rgba(15,30,45,.4);}
+body.hospital .hospital-service-line{display:flex;justify-content:space-between;
+  background:linear-gradient(180deg,#2a5a72,#1e4458);color:#e3eef5;font-size:12px;padding:4px 16px;}
+/* 红头 */
+body.hospital .hospital-mast{display:flex;justify-content:space-between;align-items:center;
+  background:#fff;padding:14px 20px;border-bottom:3px solid #b0261e;position:relative;}
+body.hospital .hospital-mast::after{content:"";position:absolute;left:20px;right:20px;bottom:3px;border-bottom:1px solid #b0261e;}
+body.hospital .hospital-mast a{font-size:30px;font-weight:900;color:#b0261e;text-decoration:none;
+  font-family:"SimHei","Heiti SC",sans-serif;letter-spacing:.08em;}
+body.hospital .hospital-mast small{display:block;color:#5a7284;font-size:11px;letter-spacing:.25em;}
+body.hospital .hospital-mast>span{font-size:14px;color:#b0261e;font-family:SimHei,sans-serif;
+  border:1px solid #b0261e;padding:3px 10px;}
+body.hospital .platform-menu{background:linear-gradient(180deg,#3a6a84,#2a5268);border:1px solid #1e4458;padding:2px;gap:1px;}
+body.hospital .platform-menu a{color:#eaf3f8;font-family:SimHei,sans-serif;font-size:13px;padding:6px 14px;
+  border-right:1px solid rgba(15,40,60,.4);text-decoration:none;}
+body.hospital .platform-menu a.current,body.hospital .platform-menu a:hover{background:#1e4458;color:#ffd98a;}
+/* 左菜单：冷灰凹陷 */
+body.hospital .patient-menu{background:#e9f0f5;border-right:1px solid #b9c8d6;padding:10px;}
+body.hospital .patient-menu h2{font-size:13px;font-family:SimHei,sans-serif;color:#1e4458;
+  border-bottom:1px solid #9ab0c0;padding-bottom:4px;}
+body.hospital .patient-menu a{display:block;padding:4px 6px;color:#2a4a60;text-decoration:none;font-size:13px;}
+body.hospital .patient-menu a:hover{background:#d3e2ee;color:#b0261e;}
+body.hospital .patient-menu p{font-size:12px;color:#5a7284;line-height:1.9;}
+body.hospital main a{color:#1e5a86;text-decoration:underline;}
+body.hospital main a:hover{color:#b0261e;}
+/* 服务步骤编号章 */
+body.hospital .clinical-service-heading h1{font-family:SimHei,sans-serif;color:#1e4458;font-size:24px;}
+body.hospital .clinical-service-heading span{color:#b0261e;font-size:12px;letter-spacing:.2em;}
+body.hospital .hospital-service-document{margin:12px 22px;padding:16px 20px;background:#fff;
+  border:1px solid #c2d2de;}
+body.hospital .service-steps{list-style:none;padding:0;counter-reset:step;}
+body.hospital .service-steps li{position:relative;padding:8px 8px 8px 46px;border-bottom:1px solid #e0e8f0;counter-increment:step;}
+body.hospital .service-steps li::before{content:counter(step);position:absolute;left:6px;top:8px;
+  width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;
+  background:linear-gradient(180deg,#3a6a84,#2a5268);color:#fff;font-family:SimHei,sans-serif;border:1px solid #1e4458;}
+body.hospital .service-steps strong{font-family:SimHei,sans-serif;color:#1e4458;}
+body.hospital .service-steps span{display:block;font-size:13px;color:#44566a;}
+/* 授权书 + 公章 */
+body.hospital .authorization-letter{position:relative;margin:14px 22px;padding:18px 24px;background:#fff;
+  border:2px solid #b0261e;box-shadow:0 0 0 1px #fff inset;}
+body.hospital .authorization-letter h1{font-family:SimHei,sans-serif;color:#b0261e;font-size:22px;}
+body.hospital .authorization-fields dt{float:left;width:96px;color:#2a5268;clear:left;}
+body.hospital .authorization-letter::after{content:"回水市医院\A资料专用章";white-space:pre;
+  position:absolute;right:26px;bottom:18px;width:96px;height:96px;line-height:1.4;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  border:3px solid #c0392b;border-radius:50%;color:#c0392b;font-size:15px;font-weight:900;
+  font-family:SimSun,serif;transform:rotate(-9deg);opacity:.7;
+  background:radial-gradient(circle,transparent 58%,rgba(192,57,43,.08));}
+body.hospital table{border-collapse:collapse;width:100%;font-size:13px;}
+body.hospital th,body.hospital td{border:1px solid #c2d2de;padding:6px 9px;}
+body.hospital thead th{background:#2a5268;color:#eaf3f8;font-family:SimHei,sans-serif;}
+body.hospital .footer-hospital{text-align:center;font-size:12px;color:#dce8f0;
+  background:linear-gradient(180deg,#2a5a72,#1e4458);padding:9px 16px;}
+body.hospital .footer-hospital::after{content:"回水市医院 · 患者服务　│　资料复制须凭本人授权　│　本机构为虚构";
+  display:block;margin-top:2px;color:#bcd2e2;}
+
+/* ============================================================================
+   第二轮增强层 · 精致组 D：PHONE 回水联系（2026 智能手机 IM，精致现代）
+   居中手机外壳 mockup：灵动岛 / 状态栏 / 单屏 / 微信风气泡 / 底部输入栏
+   —— 与古早站点形成强烈年代对比
+   ========================================================================== */
+body.phone{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  color:#111;background:#0e1016;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:18px 10px;
+  background-image:
+    radial-gradient(900px 500px at 50% -10%,#232a3a,#0e1016 70%),
+    radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.5px);
+  background-size:100% 100%,7px 7px;
+}
+/* 桌面侧栏在手机形态下隐藏（联系人/聊天主内容均在 main） */
+body.phone .phone-directory{display:none;}
+
+/* 顶部：机身顶 + 灵动岛 + 状态栏（head 内原有 a/span 隐藏，导航栏交给 main） */
+body.phone .phone-head{
+  width:min(392px,94vw);box-sizing:border-box;background:#0b0b0e;
+  border:2px solid #2c2c32;border-bottom:0;border-radius:48px 48px 0 0;
+  height:52px;position:relative;margin:0;flex:0 0 auto;}
+body.phone .phone-head a,body.phone .phone-head span{display:none;}
+body.phone .phone-head::before{content:"9:41";position:absolute;top:19px;left:30px;
+  color:#f5f5f7;font-size:14px;font-weight:600;z-index:2;letter-spacing:.03em;}
+body.phone .phone-head .st{position:absolute;top:18px;right:28px;color:#f5f5f7;font-size:13px;z-index:2;}
+body.phone .phone-head::after{content:"";position:absolute;top:13px;left:50%;transform:translateX(-50%);
+  width:116px;height:31px;background:#000;border-radius:20px;
+  box-shadow:0 0 0 1px #1c1c20;}
+
+/* 机身（屏幕外框） */
+body.phone .phone-workspace{
+  width:min(392px,94vw);box-sizing:border-box;background:#0b0b0e;
+  border:2px solid #2c2c32;border-top:0;border-radius:0 0 48px 48px;
+  padding:0 12px 14px;height:min(668px,80vh);
+  display:flex;flex-direction:column;
+  box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px #000;}
+body.phone main#main{flex:1;min-height:0;border-radius:0 0 34px 34px;overflow:hidden;
+  background:#ededed;display:flex;flex-direction:column;
+  box-shadow:none;border:0;margin:0;max-width:none;}
+/* home 指示条 */
+body.phone .phone-workspace::after{content:"";position:absolute;}
+body.phone main#main::after{content:"";position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+  width:134px;height:5px;border-radius:3px;background:rgba(0,0,0,.28);z-index:30;}
+body.phone main#main{position:relative;}
+
+/* 屏幕内导航栏（联系人 / 聊天标题） */
+body.phone .conversation-heading{flex:0 0 auto;background:#f7f7f7;border-bottom:1px solid #dcdcdc;
+  padding:10px 14px 8px;position:relative;}
+body.phone .conversation-heading h1{margin:0;font-size:17px;font-weight:600;text-align:center;color:#111;}
+body.phone .conversation-heading p{margin:0 0 2px;font-size:13px;}
+body.phone .conversation-heading p a{color:#07c160;text-decoration:none;}
+body.phone .conversation-heading p a::before{content:"‹ ";font-weight:700;}
+
+/* 联系人列表 */
+body.phone .phone-contact-list{flex:1;overflow-y:auto;list-style:none;margin:0;padding:0;background:#fff;}
+body.phone .phone-contact-list li{padding:11px 14px;border-bottom:1px solid #f0f0f0;position:relative;padding-left:66px;}
+body.phone .phone-contact-list li::before{content:"";position:absolute;left:14px;top:12px;width:40px;height:40px;
+  border-radius:8px;background:linear-gradient(135deg,#8fb0d8,#5a86b8);}
+body.phone .phone-contact-list li:nth-child(2)::before{background:linear-gradient(135deg,#d8b08f,#b8865a);}
+body.phone .phone-contact-list li:nth-child(3)::before{background:linear-gradient(135deg,#9fc8a8,#5e9a72);}
+body.phone .phone-contact-list li:nth-child(4)::before{background:linear-gradient(135deg,#c8a8c0,#9a6e92);}
+body.phone .phone-contact-list li:nth-child(5)::before{background:linear-gradient(135deg,#b8c0d8,#7a86b0);}
+body.phone .phone-contact-list li:nth-child(6)::before{background:linear-gradient(135deg,#d8c098,#b0945a);}
+body.phone .phone-contact-list li:nth-child(7)::before{background:linear-gradient(135deg,#a8c8c0,#6a9a90);}
+body.phone .phone-contact-list a{font-size:16px;font-weight:600;color:#111;text-decoration:none;}
+body.phone .phone-contact-list p{margin:2px 0 0;color:#999;font-size:12px;}
+
+/* 聊天记录气泡 */
+body.phone .contact-transcript{flex:1;overflow-y:auto;list-style:none;margin:0;padding:12px 12px 8px;
+  background:#ededed;}
+body.phone .contact-transcript li{margin:0 0 12px;position:relative;}
+body.phone .contact-transcript li header{text-align:center;margin:10px 0 8px;}
+body.phone .contact-transcript li header strong{display:none;}
+body.phone .contact-transcript li header time{color:#9a9a9a;font-size:11px;background:transparent;}
+body.phone .contact-transcript li p.literal-text{display:inline-block;max-width:76%;margin:0;text-align:left;
+  padding:9px 12px;border-radius:8px;background:#fff;color:#111;font-size:15px;line-height:1.5;
+  word-break:break-word;box-shadow:0 1px 1px rgba(0,0,0,.06);}
+body.phone .contact-transcript li.own-message{text-align:right;}
+body.phone .contact-transcript li.own-message p.literal-text{background:#95ec69;}
+body.phone .contact-attachment{margin:6px 0 0;}
+body.phone .contact-attachment a{color:#576b95;font-size:13px;}
+body.phone .contact-transcript details{margin-top:6px;font-size:13px;}
+body.phone .contact-transcript details summary{color:#576b95;}
+body.phone .contact-transcript img{max-width:70%;border-radius:8px;border:1px solid #d0d0d0;}
+
+/* p35 今早消息时间线（混合多人）→ 气泡流 */
+body.phone .morning-threads{flex:1;overflow-y:auto;background:#ededed;padding:8px 12px;}
+body.phone .morning-message{margin:0 0 10px;}
+body.phone .morning-message header{text-align:center;margin:8px 0;}
+body.phone .morning-message header strong{display:none;}
+body.phone .morning-message header time{color:#9a9a9a;font-size:11px;}
+body.phone .morning-message p{display:inline-block;max-width:78%;margin:0;padding:9px 12px;
+  border-radius:8px;background:#fff;font-size:15px;line-height:1.5;box-shadow:0 1px 1px rgba(0,0,0,.06);}
+body.phone .morning-message.own-message{text-align:right;}
+body.phone .morning-message.own-message p{background:#95ec69;}
+body.phone .morning-message p a{color:#576b95;}
+/* p36 / p42 图片与材料 */
+body.phone .phone-photo-record,body.phone .recipient-materials{padding:12px;overflow-y:auto;flex:1;}
+body.phone .phone-photo-record img,body.phone .recipient-materials img{max-width:100%;border-radius:10px;border:1px solid #d2d2d2;}
+body.phone .phone-bottom-links{flex:0 0 auto;background:#f7f7f7;border-top:1px solid #ddd;padding:8px;text-align:center;}
+body.phone .phone-bottom-links a{color:#07c160;text-decoration:none;font-size:14px;}
+
+/* 底部真实输入表单 → IM 输入栏 */
+body.phone #phone-note-form{flex:0 0 auto;background:#f7f7f7;border-top:1px solid #dcdcdc;
+  padding:8px 10px 22px;display:flex;align-items:flex-end;gap:8px;}
+body.phone #phone-note-form label{display:none;}
+body.phone #phone-note-form textarea{flex:1;resize:none;border:1px solid #d8d8d8;border-radius:6px;
+  background:#fff;padding:7px 10px;font-size:15px;rows:1;font-family:inherit;}
+body.phone #phone-note-form button{flex:0 0 auto;background:#07c160;color:#fff;border:0;border-radius:6px;
+  padding:8px 16px;font-size:15px;font-weight:600;cursor:pointer;}
+body.phone #phone-feedback{display:none;}
+
+/* ============================================================================
+   精致组 D：SCENE 梦境（精致电影感，极暗 / 颗粒 / 暗角 / 木缝光）
+   ========================================================================== */
+body.scene{
+  font-family:"Songti SC","SimSun","NSimSun",serif;color:#c8bca9;background:#050505;
+}
+body.scene:not(.dawn){background-color:#040404;
+  background-image:radial-gradient(120% 90% at 50% 12%,#16120c 0%,#080706 48%,#000 100%);}
+/* 电影颗粒 + 暗角叠加层 */
+body.scene:not(.dawn)::before{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;
+  background:
+    radial-gradient(130% 100% at 50% 46%,transparent 52%,rgba(0,0,0,.55) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");}
+body.scene #main{background:transparent;border:0;box-shadow:none;max-width:880px;}
+body.scene main img{filter:brightness(.78) contrast(1.06) saturate(.9);border:0;
+  box-shadow:0 0 40px rgba(0,0,0,.7);}
+body.scene figure{position:relative;}
+body.scene figcaption{color:#8a7d68;font-size:13px;letter-spacing:.05em;}
+/* 正文：窄栏、暖灰、行距 */
+body.scene .wood-speech p,body.scene .bed-conversation p,
+body.scene .signed-confession p,body.scene .last-spoken-words p,
+body.scene .ledger-written p,body.scene .failure-reading p{line-height:2.15;}
+/* 导航/操作：微光，去网页按钮感 */
+body.scene .scene-next{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px;}
+body.scene .scene-next a{display:inline-block;padding:9px 22px;color:#cbb591;
+  border:1px solid rgba(180,150,100,.35);text-decoration:none;font-size:15px;letter-spacing:.12em;
+  background:rgba(20,16,10,.4);transition:.25s;}
+body.scene .scene-next a:hover{color:#ffe9c0;border-color:rgba(220,180,120,.7);
+  background:rgba(60,46,24,.55);box-shadow:0 0 18px rgba(200,160,90,.18);}
+body.scene button[data-rewind]{background:transparent;border:1px solid rgba(180,150,100,.3);
+  color:#b8a884;padding:8px 18px;font-family:inherit;cursor:pointer;letter-spacing:.1em;}
+body.scene button[data-rewind]:hover{color:#ffe9c0;border-color:rgba(220,180,120,.6);}
+
+/* morning 暖明结局（p45/p47 body.dawn）：减轻暗角，晨光米白 */
+body.scene.dawn{background:#f3ece0;color:#3a3026;}
+body.scene.dawn::before{opacity:0;}
+body.scene.dawn #main{background:transparent;}
+body.scene.dawn main img{filter:sepia(.12) brightness(1.02);}
+body.scene.dawn .scene-next a{color:#7a5a30;border-color:rgba(120,90,50,.4);background:rgba(255,255,255,.4);}
+
+/* ============================================================
+   复查修正层 r5（2026-10-12）
+   ① message 老 webmail：第一轮残留 --link 深绿 → 经典蓝，统一写信按钮/选中块/附件标签
+   ② store 收讫章：两字紧凑居中（去全角空格）
+   ③ phone 双人对话：去每个时间块的淡色卡片底/边框，聊天背景统一（p35 今早消息时间线卡片保留）
+   ============================================================ */
+
+/* ① message：蓝白老 webmail 配色统一 */
+body.message{--link:#1f5e9e;}
+body.message .mail-write-button{
+  background:linear-gradient(180deg,#4180bb,#1f5e9e);
+  border:1px solid #143f6b;color:#fff;letter-spacing:.3em;}
+body.message .mail-folders nav a.current{background:#1f5e9e;color:#fff;}
+body.message .mail-folders nav a.current::before{color:#ffe27a;}
+body.message .attachment-type{background:#1f5e9e;color:#fff;}
+body.message .message-controls a,
+body.message .mail-attachments a{color:#1f5e9e;}
+
+/* ② store 收讫章紧凑居中 */
+body.store .registry-office::after{content:"收讫";letter-spacing:0;}
+
+/* ③ phone 双人对话：去卡片块，气泡自身保留颜色 */
+body.phone .contact-transcript li{
+  background:transparent;border:0;border-radius:0;
+  padding:0;margin:0 0 12px;}
+body.phone .contact-transcript li.own-message{background:transparent;border:0;}
+/* 手机屏幕内细滚动条 */
+body.phone .contact-transcript{scrollbar-width:thin;scrollbar-color:#9aa5b1 transparent;}
+body.phone .contact-transcript::-webkit-scrollbar{width:4px;}
+body.phone .contact-transcript::-webkit-scrollbar-thumb{background:#9aa5b1;border-radius:2px;}
